@@ -10,6 +10,8 @@ class Hero:
         self.__mana_regeneration_rate = mana_regeneration_rate
         self.__maxhealth = health
         self.__maxmana = mana
+        self.weapon = None
+        self.spell = None
 
     def known_as(self):
         return "{} the {}".format(self.__name, self.__title)
@@ -60,3 +62,24 @@ class Hero:
         if self.mana > self.__maxmana:
             self.mana = self.__maxmana
 
+    def equip(self, weapon):
+        self.weapon = weapon
+
+    def learn(self, spell):
+        self.spell = spell
+
+    def attack(self, what):
+        if not self.what != "weapon" or not self.what != "magic":
+            raise(ValueError)
+
+        if what == "weapon":
+            if self.weapon is None:
+                return 0
+            else:
+                return self.weapon.damage()
+
+        if what == "magic":
+            if self.magic is None:
+                return 0
+            else:
+                return self.spell.damage()
