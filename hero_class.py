@@ -17,7 +17,7 @@ class Hero:
         return "{} the {}".format(self.__name, self.__title)
 
     def is_alive(self):
-        if self.health > 1:
+        if self.health > 0:
             return True
         return False
 
@@ -76,10 +76,10 @@ class Hero:
             if self.weapon is None:
                 return 0
             else:
-                return self.weapon.damage()
+                return self.weapon.damage
 
         if what == "magic":
             if self.magic is None:
                 return 0
             else:
-                return self.spell.damage()
+                return self.spell.damage
