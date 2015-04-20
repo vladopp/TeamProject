@@ -36,9 +36,62 @@ class Dungeon:
         print("Game Over :(")
         os.__exit()
 
+    def treasure(self):
+        pass
+
     def move_hero(self, direction):
         if direction == "left":
-            if self.heroposX == 0:
+            if self.map[self.heroposX-1][self.heroposY] == '#':
                 return False
-            if self.map[self.heroposX-1][self.heroposY] == '.':
-                pass
+            else:
+                if self.map[self.heroposX-1][self.heroposY] == '.':
+                    self.map[self.heroposX-1][self.heroposY] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposX -= 1
+                elif self.map[self.heroposX][self.heroposY-1] == 'T':
+                    self.map[self.heroposX][self.heroposY-1] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposY -= 1
+                    self.treasure()
+
+        elif direction == "right":
+            if self.map[self.heroposX+1][self.heroposY] == '#':
+                return False
+            else:
+                if self.map[self.heroposX+1][self.heroposY] == '.':
+                    self.map[self.heroposX+1][self.heroposY] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposX += 1
+                elif self.map[self.heroposX+1][self.heroposY] == 'T':
+                    self.map[self.heroposX+1][self.heroposY] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposX += 1
+                    self.treasure()
+
+        elif direction == "up":
+            if self.map[self.heroposX][self.heroposY-1] == '#':
+                return False
+            else:
+                if self.map[self.heroposX][self.heroposY-1] == '.':
+                    self.map[self.heroposX][self.heroposY-1] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposY -= 1
+                elif self.map[self.heroposX][self.heroposY-1] == 'T':
+                    self.map[self.heroposX][self.heroposY-1] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposY -= 1
+                    self.treasure()
+
+        elif direction == "down":
+            if self.map[self.heroposX][self.heroposY+1] == '#':
+                return False
+            else:
+                if self.map[self.heroposX][self.heroposY+1] == '.':
+                    self.map[self.heroposX][self.heroposY+1] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposY += 1
+                elif self.map[self.heroposX][self.heroposY+1] == 'T':
+                    self.map[self.heroposX][self.heroposY+1] = 'H'
+                    self.map[self.heroposX][self.heroposY] = '.'
+                    self.heroposY += 1
+                    self.treasure()
